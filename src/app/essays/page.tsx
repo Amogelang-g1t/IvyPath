@@ -12,7 +12,7 @@ export default function EssayWorkspace() {
   const [essays, setEssays] = useState<Essay[]>([]);
   const [activeEssay, setActiveEssay] = useState<Essay | null>(null);
   const [content, setContent] = useState('');
-  const [analysis, setAnalysis] = useState({ score: 0, foundKeywords: [], missingKeywords: [], wordCount: 0 });
+  const [analysis, setAnalysis] = useState<{ score: number; foundKeywords: string[]; missingKeywords: string[]; wordCount: number }>({ score: 0, foundKeywords: [], missingKeywords: [], wordCount: 0 });
 
   useEffect(() => {
     const saved = LocalPersistenceService.load<Essay[]>('essays');
