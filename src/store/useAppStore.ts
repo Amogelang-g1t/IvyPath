@@ -11,6 +11,9 @@ interface UserProfile {
   efcTier: string;
   current_grade?: string;
   dreamCollege?: string;
+  schoolType?: string;
+  schoolName?: string;
+  province?: string;
 }
 
 interface AppState {
@@ -34,6 +37,9 @@ export const useAppStore = create<AppState>((set) => ({
     major: '',
     extracurriculars: '',
     efcTier: '',
+    schoolType: '',
+    schoolName: '',
+    province: '',
   },
   dreamCollege: 'default',
   onboardingComplete: false,
