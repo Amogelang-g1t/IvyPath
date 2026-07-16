@@ -14,14 +14,14 @@ export default function CompetitivenessGauge({
 }) {
   const { dreamCollege } = useAppStore();
 
-  const getScoreColor = (s) => {
+  const getScoreColor = (s: number) => {
     if (s >= 80) return 'text-green-600';
     if (s >= 60) return 'text-amber-600';
     if (s >= 40) return 'text-orange-600';
     return 'text-red-600';
   };
 
-  const getScoreLabel = (s) => {
+  const getScoreLabel = (s: number) => {
     if (s >= 80) return 'Excellent';
     if (s >= 60) return 'Good';
     if (s >= 40) return 'Developing';
