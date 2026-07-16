@@ -89,6 +89,14 @@ const MiniAvatar = ({ position }: { position: number }) => {
   );
 };
 
+type Milestone = {
+  id: number;
+  position: number;
+  label: string;
+  grade: string;
+  term: string;
+};
+
 export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
   const { dreamCollege } = useAppStore();
   const [progress, setProgress] = useState(0);
@@ -103,7 +111,7 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
     setProgress(progressPercent);
   }, [tasks]);
 
-  const milestones = [
+  const milestones: Milestone[] = [
     { id: 1, position: 5, label: "Start", grade: "grade_10", term: "now" },
     { id: 2, position: 12, label: "SAT Prep", grade: "grade_10", term: "term_2" },
     { id: 3, position: 20, label: "Join Clubs", grade: "grade_10", term: "term_3" },
@@ -118,7 +126,7 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
     { id: 12, position: 95, label: "Goal!", grade: "grade_12", term: "final" },
   ];
 
-  const getMilestoneStatus = (milestone) => {
+  const getMilestoneStatus = (milestone: Milestone) => {
     const relevantTasks = tasks.filter(t =>
       t.grade_level === milestone.grade &&
       (milestone.term === 'now' || t.term === milestone.term)
