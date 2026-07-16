@@ -9,6 +9,8 @@ interface UserProfile {
   major: string;
   extracurriculars: string;
   efcTier: string;
+  current_grade?: string;
+  dreamCollege?: string;
 }
 
 interface AppState {
