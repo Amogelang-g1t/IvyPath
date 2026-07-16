@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #6366f1;
-  --color-accent: #a78bfa;
+  --color-primary: #3b82f6;
+  --color-accent: #60a5fa;
   --color-text-primary: #ffffff;
 
   /* Glassmorphism Colors */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
 
@@ -21,7 +21,7 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen;
+    @apply bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 min-h-screen;
     background-attachment: fixed;
   }
 
@@ -68,7 +68,7 @@
 
   /* Gradient text */
   .text-gradient {
-    @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent;
   }
 
   /* Smooth transitions */
@@ -78,7 +78,7 @@
 
   /* Input glassmorphism */
   .input-glass {
-    @apply glass w-full px-4 py-3 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0;
+    @apply glass w-full px-4 py-3 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0;
   }
 
   /* Button glassmorphism */
@@ -87,19 +87,12 @@
   }
 }
 
-/* Animated gradient background */
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }
 
-.animate-gradient {
-  animation: gradient-shift 8s ease infinite;
+/* Selection color */
+::selection {
+  @apply bg-blue-500/30 text-white;
 }
