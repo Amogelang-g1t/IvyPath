@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from 'next/navigation';
 import { useAppStore } from '../../store/useAppStore';
 import { SplashScreen } from '../../components/onboarding/SplashScreen';
