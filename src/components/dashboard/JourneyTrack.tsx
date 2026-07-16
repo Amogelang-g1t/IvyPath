@@ -7,7 +7,7 @@ import { UNIVERSITY_THEMES } from '../../config/universities';
 // Mock Tooltip to resolve "Module not found: Can't resolve '@/components/ui/tooltip'"
 const TooltipProvider = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 const Tooltip = ({ children }: { children: React.ReactNode }) => <>{children}</>;
-const TooltipTrigger = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+const TooltipTrigger = ({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) => <>{children}</>;
 const TooltipContent = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 
 const CollegeTower = ({ collegeId }: { collegeId: string }) => {
