@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Save, Trash2, Award, Zap, AlertCircle } from 'lucide-react';

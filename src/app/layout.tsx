@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { GraduationCap, Target, FileText, Trophy, DollarSign, Mic, Home, LogOut } from 'lucide-react';
 import { usePathname } from 'next/navigation';

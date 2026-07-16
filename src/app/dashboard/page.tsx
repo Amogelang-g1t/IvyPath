@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Target, FileText, Trophy, GraduationCap, DollarSign, Mic, ArrowRight, Sparkles, Quote, ChevronRight, Upload } from 'lucide-react';
