@@ -13,8 +13,8 @@ export default function RoadmapPage() {
   const { dreamCollege } = useAppStore();
 
   useEffect(() => {
-    const saved: any[] = LocalPersistenceService.load<any[]>('tasks') || [];
-    setTasks(saved);
+    const saved = LocalPersistenceService.load<any[]>('tasks') || [];
+    setTasks(Array.isArray(saved) ? saved : []);
   }, []);
 
   const toggleTask = (id: string) => {
