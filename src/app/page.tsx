@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function AuthPage() {
@@ -14,7 +14,6 @@ export default function AuthPage() {
     if (!name.trim()) return;
     setIsCreating(true);
 
-    // Simulate identity creation
     await new Promise(res => setTimeout(res, 1000));
 
     localStorage.setItem('ivypath_identity', JSON.stringify({ name }));
@@ -22,54 +21,64 @@ export default function AuthPage() {
     router.push('/onboarding');
   };
 
+  const features = [
+    'Personalized guidance',
+    'Smart planning tools',
+    'Track progress',
+  ];
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2000"></div>
-      <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
+      {/* Animated gradient orbs - more subtle */}
+      <div className="absolute top-20 right-40 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+      <div className="absolute bottom-40 left-20 w-96 h-96 bg-cyan-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse animation-delay-2000"></div>
 
-      {/* Main card */}
+      {/* Main container */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
         className="w-full max-w-md relative z-10"
       >
-        <div className="glass p-8 md:p-12 space-y-8">
+        {/* Card */}
+        <div className="glass-lg p-8 md:p-10 space-y-8">
           {/* Header */}
-          <div className="space-y-4 text-center">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
-              className="w-20 h-20 mx-auto"
-            >
-              <div className="glass-sm w-full h-full flex items-center justify-center">
-                <Sparkles className="w-10 h-10 text-indigo-400" />
-              </div>
-            </motion.div>
+          <div className="space-y-3">
+            <h1 className="text-4xl font-black text-white">
+              IvyPath
+            </h1>
+            <p className="text-gray-300 text-lg">Plan your university journey with precision</p>
+          </div>
 
-            <div>
-              <h1 className="text-4xl font-black bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                IvyPath
-              </h1>
-              <p className="text-gray-300 font-medium mt-2">Your journey to excellence starts here</p>
-            </div>
+          {/* Features list */}
+          <div className="grid grid-cols-3 gap-3">
+            {features.map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-sm p-3 text-center"
+              >
+                <p className="text-xs font-semibold text-blue-300">{feature}</p>
+              </motion.div>
+            ))}
           </div>
 
           {/* Input Section */}
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-300 uppercase tracking-widest ml-1">Full Name</label>
+          <div className="space-y-4 pt-4">
+            <div>
+              <label className="text-xs font-bold text-blue-200 uppercase tracking-wider block mb-2">
+                Get Started
+              </label>
               <motion.input
                 whileFocus={{ scale: 1.02 }}
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your name..."
+                placeholder="Your full name..."
                 onKeyPress={(e) => e.key === 'Enter' && handleStart()}
-                className="input-glass"
+                className="input-glass text-sm"
               />
             </div>
 
@@ -78,10 +87,10 @@ export default function AuthPage() {
               whileTap={{ scale: 0.98 }}
               onClick={handleStart}
               disabled={!name || isCreating}
-              className={`w-full py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 ${
                 name && !isCreating
-                  ? 'glass hover:bg-[rgba(255,255,255,0.15)] text-white cursor-pointer'
-                  : 'glass-sm text-gray-400 cursor-not-allowed opacity-50'
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer shadow-lg shadow-blue-500/50'
+                  : 'glass text-gray-400 cursor-not-allowed opacity-50'
               }`}
             >
               {isCreating ? (
@@ -89,36 +98,35 @@ export default function AuthPage() {
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    <Sparkles className="w-5 h-5" />
-                  </motion.div>
-                  Initializing...
+                    className="w-4 h-4 border-2 border-transparent border-t-white rounded-full"
+                  />
+                  Creating profile...
                 </>
               ) : (
                 <>
-                  Begin Your Journey
-                  <ArrowRight className="w-5 h-5" />
+                  Start Planning
+                  <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </motion.button>
           </div>
 
-          {/* Footer */}
-          <div className="pt-4 text-center border-t border-white/10">
-            <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-              ✨ Local • Private • Excellence
-            </p>
+          {/* Footer note */}
+          <div className="pt-4 border-t border-white/10 text-center">
+            <p className="text-xs text-gray-400">Your data stays private and secure</p>
           </div>
         </div>
       </motion.div>
 
-      {/* Subtle glow effect */}
+      {/* Scroll indicator */}
       <motion.div
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute inset-0 pointer-events-none"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 text-gray-400"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-purple-500/5 to-pink-500/0 rounded-full blur-3xl"></div>
+        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-2 bg-gray-400 rounded-full"></div>
+        </div>
       </motion.div>
     </div>
   );
