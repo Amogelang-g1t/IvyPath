@@ -13,7 +13,7 @@ export default function ScholarshipsPage() {
 
   useEffect(() => {
     // Load local data first
-    const saved = LocalPersistenceService.load('scholarships') || [];
+    const saved: any[] = LocalPersistenceService.load<any[]>('scholarships') || [];
     setScholarships(saved);
 
     // Update online status
