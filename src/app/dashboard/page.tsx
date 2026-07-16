@@ -11,8 +11,8 @@ import JourneyTrack from "../../components/dashboard/JourneyTrack";
 import CompetitivenessGauge from "../../components/dashboard/CompetitivenessGauge";
 
 export default function Dashboard() {
-  const [profile, setProfile] = useState(null);
-  const [tasks, setTasks] = useState([]);
+  const [profile, setProfile] = useState<any>(null);
+  const [tasks, setTasks] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
