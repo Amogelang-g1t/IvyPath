@@ -27,7 +27,8 @@ export default function OnboardingPage() {
     RegistrationService.recordUser({
       userId: (LocalPersistenceService.load('identity') as any)?.name || 'anonymous',
       grade: userProfile.current_grade,
-      dreamCollege: userProfile.dreamCollege || 'unknown'
+      dreamCollege: userProfile.dreamCollege || 'unknown',
+      registrationDate: new Date().toISOString()
     });
 
     // 4. Update store and redirect
