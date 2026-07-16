@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAppStore } from '../../store/useAppStore';
 
 export default function CompetitivenessGauge({
@@ -43,11 +42,11 @@ export default function CompetitivenessGauge({
           <div className="flex items-center gap-2">
             <Award className="w-5 h-5 text-primary" />
             <h3 className="font-bold text-stone-800">Readiness Score</h3>
-          </div>
+          </div >
           <span className={`text-sm font-bold ${getScoreColor(score)}`}>
             {getScoreLabel(score)}
-          </span>
-        </div>
+          </span >
+        </div >
 
         <div className="relative flex items-center justify-center py-6">
           <svg className="w-48 h-24" viewBox="0 0 200 100">
@@ -79,8 +78,8 @@ export default function CompetitivenessGauge({
             >
               {score}%
             </motion.span>
-          </div>
-        </div>
+          </div >
+        </div >
 
         <div className="space-y-4">
           {breakdown.map((item, index) => (
@@ -88,7 +87,7 @@ export default function CompetitivenessGauge({
               <div className="flex justify-between text-sm">
                 <span className="text-stone-600 font-medium">{item.label}</span>
                 <span className="font-bold text-stone-800">{item.score}%</span>
-              </div>
+              </div >
               <div className="h-3 bg-stone-200 rounded-full overflow-hidden neu-pressed p-0.5">
                 <motion.div
                   className="h-full bg-primary rounded-full"
@@ -96,11 +95,11 @@ export default function CompetitivenessGauge({
                   animate={{ width: `${item.score}%` }}
                   transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
                 />
-              </div>
-            </div>
+              </div >
+            </div >
           ))}
-        </div>
-      </CardContent>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 }

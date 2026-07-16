@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Trash2, Award, TrendingUp, Star, ExternalLink } from 'lucide-react';
+import { Plus, Trash2, Award, TrendingUp, Star, ExternalLink, Tag } from 'lucide-react';
 import { LocalPersistenceService } from '@/api/localPersistence';
 import { useAppStore } from '../../store/useAppStore';
 
@@ -68,7 +68,7 @@ export default function ActivitiesPage() {
         >
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-black text-stone-800 uppercase tracking-widest text-sm">New Activity</h3>
-            <button onClick={() => setIsAdding(false)} className="text-stone-400 hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
+            <button onClick={() => setIsAdding(false)} className="text-stone-400 hover:text-red-500"><Trash2 className="w-4 h-4" /></button
           </div >
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
