@@ -89,7 +89,7 @@ const MiniAvatar = ({ position }: { position: number }) => {
   );
 };
 
-export default function JourneyTrack({ tasks = [] }) {
+export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
   const { dreamCollege } = useAppStore();
   const [progress, setProgress] = useState(0);
 
