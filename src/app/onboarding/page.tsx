@@ -26,7 +26,7 @@ export default function OnboardingPage() {
     // We do this asynchronously and don't block the user from entering the app.
     RegistrationService.recordUser({
       userId: (LocalPersistenceService.load('identity') as any)?.name || 'anonymous',
-      grade: userProfile.current_grade,
+      grade: userProfile.current_grade || '',
       dreamCollege: userProfile.dreamCollege || 'unknown',
       registrationDate: new Date().toISOString()
     });
