@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Circle, Calendar, Tag, Trophy, ChevronRight, Upload, Image as ImageIcon, X } from 'lucide-react';

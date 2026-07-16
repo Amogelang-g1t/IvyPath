@@ -1,11 +1,14 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Circle, Star } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useAppStore } from '../../store/useAppStore';
 import { UNIVERSITY_THEMES } from '../../config/universities';
+
+// Mock Tooltip to resolve "Module not found: Can't resolve '@/components/ui/tooltip'"
+const TooltipProvider = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+const Tooltip = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+const TooltipTrigger = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+const TooltipContent = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 
 const CollegeTower = ({ collegeId }: { collegeId: string }) => {
   const theme = UNIVERSITY_THEMES[collegeId] || UNIVERSITY_THEMES.default;
