@@ -33,18 +33,18 @@ export const PathwayEngine = {
     const highImpactPlays = [
       {
         title: 'Secure a Competitive Summer Program',
-        desc: 'Apply to programs like SSP (Summer Science Program) or Governor\'s Schools. These are "gold stars" on Ivy applications.',
-        category: 'High-Impact', priority: 'high', impact: 'national'
+        description: 'Apply to programs like SSP (Summer Science Program) or Governor\'s Schools. These are "gold stars" on Ivy applications.',
+        category: 'High-Impact' as const, priority: 'high' as const, impactLevel: 'national' as const
       },
       {
         title: 'Publish Original Research',
-        desc: 'Partner with a local university professor or use platforms like Polygence to publish a paper in your field of interest.',
-        category: 'High-Impact', priority: 'medium', impact: 'global'
+        description: 'Partner with a local university professor or use platforms like Polygence to publish a paper in your field of interest.',
+        category: 'High-Impact' as const, priority: 'medium' as const, impactLevel: 'global' as const
       },
       {
         title: 'Found a Niche Organization',
-        desc: 'Don\'t just join a club; create an organization that solves a real problem in your community. Focus on measurable impact.',
-        category: 'High-Impact', priority: 'high', impact: 'national'
+        description: 'Don\'t just join a club; create an organization that solves a real problem in your community. Focus on measurable impact.',
+        category: 'High-Impact' as const, priority: 'high' as const, impactLevel: 'national' as const
       },
     ];
 
