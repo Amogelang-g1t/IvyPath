@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Flame, Trophy, Star } from 'lucide-react';
 
-export default function StatsOverview({ profile, tasks = [], activities = [], essays = [] }) {
+export default function StatsOverview({ profile, tasks = [], activities = [], essays = [] }: { profile?: any; tasks?: any[]; activities?: any[]; essays?: any[] }) {
   const completedTasks = tasks.filter(t => t.status === 'completed').length;
   const totalTasks = tasks.length;
   const progressPercent = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
