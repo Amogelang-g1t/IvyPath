@@ -19,7 +19,7 @@ export default function Dashboard() {
     async function loadDashboard() {
       setIsLoading(true);
       const p = LocalPersistenceService.load("profile");
-      const t = LocalPersistenceService.load("tasks") || [];
+      const t: any[] = LocalPersistenceService.load<any[]>("tasks") || [];
 
       setProfile(p);
       setTasks(t);
