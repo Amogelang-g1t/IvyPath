@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, Video, CheckCircle2, AlertCircle, Play, StopCircle, RotateCcw } from 'lucide-react';
+import { Mic, Video, CheckCircle2, AlertCircle, Play, StopCircle, RotateCcw, Zap, Award, ChevronRight } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { MentorEngine } from '../../api/mentorEngine';
 import { LocalPersistenceService } from '../../api/localPersistence';
