@@ -1,39 +1,19 @@
 {
-  "name": "ivypath",
-  "version": "0.1.0",
-  "private": true,
+  "name": "workspace",
+  "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
+    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "typecheck:libs": "tsc --build",
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
+  "private": true,
   "dependencies": {
-    "next": "14.2.27",
-    "react": "^18",
-    "react-dom": "^18",
-    "lucide-react": "^0.378.0",
-    "framer-motion": "^11.0.8",
-    "zustand": "^4.5.2",
-    "@radix-ui/react-slot": "latest",
-    "@radix-ui/react-tooltip": "latest",
-    "@radix-ui/react-dialog": "latest",
-    "@radix-ui/react-progress": "latest",
-    "@radix-ui/react-checkbox": "latest",
-    "@radix-ui/react-label": "latest",
-    "@radix-ui/react-radio-group": "latest",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "tailwind-merge": "^2.2.1"
+    "@replit/connectors-sdk": "^0.4.1"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.27"
+    "prettier": "^3.9.5",
+    "typescript": "~5.9.3"
   }
 }
