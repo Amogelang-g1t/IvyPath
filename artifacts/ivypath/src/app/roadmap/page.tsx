@@ -53,16 +53,16 @@ export default function RoadmapPage() {
     <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-8">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-3xl font-black text-stone-800">Strategic Roadmap</h1>
-          <p className="text-stone-500 font-medium">Your evidence-based path to {dreamCollege.toUpperCase()}</p>
+          <h1 className="text-3xl font-black">Strategic Roadmap</h1>
+          <p className="text-[var(--ivy-text-secondary)] font-medium">Your evidence-based path to {dreamCollege.toUpperCase()}</p>
         </div>
         <div className="flex gap-2 flex-wrap">
           {['all', 'Academic', 'Testing', 'Extracurricular', 'Strategic', 'High-Impact'].map(cat => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                filter === cat ? 'neu-pressed text-primary' : 'neu-button text-stone-500'
+              className={`px-4 py-2 rounded-xl text-[0.75rem] font-semibold tracking-[0.08em] uppercase transition-all ${
+                filter === cat ? 'bg-[var(--ivy-accent-glow)] text-[var(--ivy-accent)] border border-[var(--ivy-accent)]' : 'border border-[var(--ivy-border)] text-[var(--ivy-text-secondary)] hover:text-[var(--ivy-text-primary)] hover:border-[var(--ivy-border-strong)]'
               }`}
             >
               {cat === 'all' ? 'All Tasks' : cat}
@@ -73,8 +73,8 @@ export default function RoadmapPage() {
 
       <div className="grid gap-6">
         {filteredTasks.length === 0 ? (
-          <div className="text-center py-20 neu-flat space-y-4">
-            <p className="text-stone-400">No tasks found for this category.</p>
+          <div className="text-center py-20 glass-card space-y-4">
+            <p className="text-[var(--ivy-text-secondary)]">No tasks found for this category.</p>
           </div>
         ) : (
           filteredTasks.map((task, index) => (
@@ -86,40 +86,40 @@ export default function RoadmapPage() {
               className="group relative"
             >
               <div
-                className={`p-6 rounded-3xl transition-all flex items-center gap-6 ${
-                  task.status === 'completed' ? 'neu-pressed opacity-80' : 'neu-flat hover:scale-[1.01]'
+                className={`p-6 rounded-[12px] border transition-all flex flex-col md:flex-row md:items-center gap-6 ${
+                  task.status === 'completed' ? 'bg-[var(--ivy-glass-bg)] border-[var(--ivy-accent)] opacity-80' : 'bg-[var(--ivy-bg-panel)] border-[var(--ivy-border)] hover:-translate-y-[2px] hover:border-[var(--ivy-border-strong)]'
                 }`}
               >
                 <div
                   onClick={() => toggleTask(task.id)}
-                  className="cursor-pointer"
+                  className="cursor-pointer shrink-0"
                 >
                   {task.status === 'completed' ? (
-                    <CheckCircle2 className="w-8 h-8 text-green-500" />
+                    <CheckCircle2 className="w-8 h-8 text-[var(--ivy-success)]" />
                   ) : (
-                    <Circle className="w-8 h-8 text-stone-300 group-hover:text-primary transition-colors" />
+                    <Circle className="w-8 h-8 text-[var(--ivy-text-muted)] group-hover:text-[var(--ivy-accent)] transition-colors" />
                   )}
                 </div>
 
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-black uppercase tracking-widest ${
-                      task.priority === 'high' ? 'bg-red-100 text-red-600' : 'bg-stone-100 text-stone-500'
+                    <span className={`text-[0.75rem] px-3 py-1 rounded-[24px] font-semibold uppercase tracking-[0.08em] border ${
+                      task.priority === 'high' ? 'border-[var(--ivy-danger)] text-[var(--ivy-danger)] bg-[rgba(248,113,113,0.1)]' : 'border-[var(--ivy-border-strong)] text-[var(--ivy-text-secondary)]'
                     }`}>
                       {task.priority}
                     </span>
-                    <span className="text-xs font-bold text-stone-400 flex items-center gap-1">
+                    <span className="text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] flex items-center gap-1">
                       <Calendar className="w-3 h-3" /> {task.term}
                     </span>
                   </div>
-                  <h3 className={`text-lg font-bold ${task.status === 'completed' ? 'line-through text-stone-400' : 'text-stone-800'}`}>
+                  <h3 className={`text-lg font-bold ${task.status === 'completed' ? 'line-through text-[var(--ivy-text-muted)]' : 'text-[var(--ivy-text-primary)]'}`}>
                     {task.title}
                   </h3>
-                  <p className="text-sm text-stone-500 leading-relaxed">{task.description}</p>
+                  <p className="text-sm text-[var(--ivy-text-secondary)] leading-relaxed">{task.description}</p>
                 </div>
 
-                <div className="flex flex-col items-end gap-3">
-                  <div className="flex items-center gap-1 text-amber-600 font-black text-sm">
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t border-[var(--ivy-border)] md:border-0">
+                  <div className="flex items-center gap-1 text-[var(--ivy-accent)] font-bold text-sm">
                     <Trophy className="w-4 h-4" /> {task.points} pts
                   </div>
 
@@ -127,13 +127,13 @@ export default function RoadmapPage() {
                     {task.proofImage ? (
                       <button
                         onClick={() => setSelectedProof(task.proofImage)}
-                        className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all"
+                        className="p-2 rounded-[8px] bg-[var(--ivy-accent-glow)] text-[var(--ivy-accent)] hover:bg-[var(--ivy-accent)] hover:text-[#0B1220] transition-all"
                         title="View Proof"
                       >
                         <ImageIcon className="w-5 h-5" />
                       </button>
                     ) : (
-                      <label className="p-2 rounded-lg bg-stone-100 text-stone-400 hover:text-primary transition-all cursor-pointer" title="Upload Proof">
+                      <label className="p-2 rounded-[8px] bg-[var(--ivy-bg-elevated)] text-[var(--ivy-text-muted)] hover:text-[var(--ivy-accent)] hover:bg-[var(--ivy-accent-glow)] transition-all cursor-pointer" title="Upload Proof">
                         <Upload className="w-5 h-5" />
                         <input
                           type="file"
@@ -154,22 +154,22 @@ export default function RoadmapPage() {
       {/* Proof Modal */}
       <AnimatePresence>
         {selectedProof && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0B1220]/80 backdrop-blur-sm">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="neu-flat bg-white p-2 rounded-3xl max-w-2xl w-full relative"
+              className="glass-card p-2 max-w-2xl w-full relative"
             >
               <button
                 onClick={() => setSelectedProof(null)}
-                className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-white text-stone-500 hover:text-red-500 shadow-lg flex items-center justify-center transition-all"
+                className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-[var(--ivy-bg-elevated)] border border-[var(--ivy-border)] text-[var(--ivy-text-muted)] hover:text-[var(--ivy-danger)] shadow-lg flex items-center justify-center transition-all z-10"
               >
                 <X className="w-6 h-6" />
               </button>
-              <img src={selectedProof} alt="Task Proof" className="w-full rounded-2xl shadow-inner" />
+              <img src={selectedProof} alt="Task Proof" className="w-full rounded-[8px] shadow-inner" />
               <div className="p-4 text-center">
-                <p className="text-sm font-bold text-stone-600 uppercase tracking-widest">Verified Achievement</p>
+                <p className="text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em]">Verified Achievement</p>
               </div>
             </motion.div>
           </div>
@@ -177,7 +177,7 @@ export default function RoadmapPage() {
       </AnimatePresence>
 
       <footer className="text-center py-10">
-        <p className="text-sm text-stone-400 italic font-medium">
+        <p className="text-sm text-[var(--ivy-text-muted)] italic">
           Upload screenshots as proof of completion to build your digital portfolio.
         </p>
       </footer>

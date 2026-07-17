@@ -87,15 +87,15 @@ export default function MentorPage() {
     <div className="p-4 md:p-8 max-w-4xl mx-auto h-[calc(100vh-80px)] flex flex-col space-y-6">
       <header className="flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+          <div className="w-10 h-10 rounded-full bg-[var(--ivy-accent)] flex items-center justify-center text-[#0B1220]">
             <Bot className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-black text-stone-800">AI Strategic Mentor</h1>
-            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Offline Expert System</p>
+            <h1 className="text-2xl font-black">AI Strategic Mentor</h1>
+            <p className="text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em]">Offline Expert System</p>
           </div>
         </div>
-        <button onClick={clearChat} className="neu-button text-stone-500 hover:text-red-500 transition-colors">
+        <button onClick={clearChat} className="btn-ghost hover:!border-[var(--ivy-danger)] hover:!text-[var(--ivy-danger)] !px-3">
           <Trash2 className="w-4 h-4" />
         </button>
       </header>
@@ -111,15 +111,15 @@ export default function MentorPage() {
             >
               <div className={`max-w-[80%] p-4 rounded-2xl transition-all ${
                 msg.sender === 'user'
-                  ? 'neu-flat bg-primary text-white font-medium'
-                  : 'neu-pressed text-stone-700'
+                  ? 'bg-[var(--ivy-accent-glow)] border border-[rgba(56,189,248,0.25)] text-[var(--ivy-text-primary)] rounded-tr-sm'
+                  : 'glass-panel rounded-tl-sm'
               }`}>
-                <div className="flex items-center gap-2 mb-1 opacity-60 text-[10px] font-black uppercase">
+                <div className={`flex items-center gap-2 mb-1 opacity-60 text-[10px] font-black uppercase ${msg.sender === 'user' ? 'text-[var(--ivy-accent)]' : 'text-[var(--ivy-text-muted)]'}`}>
                   {msg.sender === 'user' ? <User className="w-3 h-3" /> : <Bot className="w-3 h-3" />}
                   {msg.sender === 'user' ? 'You' : 'Mentor'}
                 </div>
-                <p className="text-sm leading-relaxed">{msg.text}</p>
-                <div className="text-right mt-1 text-[9px] opacity-40">
+                <p className="text-sm leading-relaxed text-[var(--ivy-text-primary)]">{msg.text}</p>
+                <div className="text-right mt-2 text-[9px] opacity-40 text-[var(--ivy-text-muted)]">
                   {msg.timestamp instanceof Date
                     ? msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                     : new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -130,17 +130,17 @@ export default function MentorPage() {
         </AnimatePresence>
       </div>
 
-      <div className="relative">
+      <div className="relative pt-4">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           placeholder="Ask about your profile, GPA, or target college..."
-          className="w-full p-5 pr-16 rounded-3xl border-0 neu-pressed focus:ring-2 focus:ring-primary outline-none transition-all text-stone-700"
+          className="input-field !pr-16 !py-4 !rounded-[12px] bg-[var(--ivy-bg-panel)] border-[var(--ivy-border-strong)]"
         />
         <button
           onClick={handleSend}
-          className="absolute right-3 top-3 w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:scale-105 transition-all shadow-lg"
+          className="absolute right-2 top-6 bottom-2 w-12 bg-[var(--ivy-accent)] text-[#0B1220] rounded-[8px] flex items-center justify-center hover:bg-opacity-90 transition-all shadow-lg"
         >
           <Send className="w-5 h-5" />
         </button>

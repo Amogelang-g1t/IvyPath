@@ -5,18 +5,18 @@ export const SplashScreen: React.FC = () => {
   const { setStep } = useAppStore();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] text-center px-6">
-      <h1 className="text-5xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
+    <div className="flex flex-col items-center justify-center min-h-[80vh] text-center px-6 max-w-3xl mx-auto">
+      <h1 className="text-5xl font-black mb-6 tracking-tight text-[var(--ivy-text-primary)]">
         Your Ivy League Journey <br />
-        <span className="text-indigo-600">Starts Here.</span>
+        <span className="text-[var(--ivy-accent)]">Starts Here.</span>
       </h1>
-      <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">
+      <p className="text-xl text-[var(--ivy-text-secondary)] mb-10 max-w-2xl leading-relaxed">
         You're aiming for the peak of academic excellence. We're here to help you
         map out the precise steps to make your dream college a reality.
       </p>
       <button
         onClick={() => setStep(1)}
-        className="px-8 py-4 bg-indigo-600 text-white rounded-full font-semibold text-lg hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-xl"
+        className="btn-primary px-10 py-5 text-lg"
       >
         Begin Your Pathway
       </button>

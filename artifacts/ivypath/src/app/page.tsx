@@ -27,10 +27,6 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div className="absolute top-20 right-40 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
-      <div className="absolute bottom-40 left-20 w-96 h-96 bg-cyan-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse animation-delay-2000"></div>
-
       {/* Main container */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -39,13 +35,13 @@ export default function AuthPage() {
         className="w-full max-w-md relative z-10"
       >
         {/* Card */}
-        <div className="glass-lg p-8 md:p-10 space-y-8">
+        <div className="glass-card p-8 md:p-10 space-y-8">
           {/* Header */}
           <div className="space-y-3">
-            <h1 className="text-4xl font-black text-white">
+            <h1 className="text-4xl font-black">
               IvyPath
             </h1>
-            <p className="text-gray-300 text-lg">Plan your university journey with precision</p>
+            <p className="text-[var(--ivy-text-secondary)] text-lg">Plan your university journey with precision</p>
           </div>
 
           {/* Features list */}
@@ -56,9 +52,9 @@ export default function AuthPage() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-sm p-3 text-center"
+                className="glass-panel p-3 text-center flex items-center justify-center"
               >
-                <p className="text-xs font-semibold text-blue-300">{feature}</p>
+                <p className="text-xs font-semibold text-[var(--ivy-text-secondary)] leading-tight">{feature}</p>
               </motion.div>
             ))}
           </div>
@@ -66,64 +62,50 @@ export default function AuthPage() {
           {/* Input Section */}
           <div className="space-y-4 pt-4">
             <div>
-              <label className="text-xs font-bold text-blue-200 uppercase tracking-wider block mb-2">
+              <label className="text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block mb-2">
                 Get Started
               </label>
-              <motion.input
-                whileFocus={{ scale: 1.02 }}
+              <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your full name..."
                 onKeyPress={(e) => e.key === 'Enter' && handleStart()}
-                className="input-glass text-sm"
+                className="input-field text-sm"
               />
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            <button
               onClick={handleStart}
               disabled={!name || isCreating}
-              className={`w-full py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3 ${
                 name && !isCreating
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer shadow-lg shadow-blue-500/50'
-                  : 'glass text-gray-400 cursor-not-allowed opacity-50'
+                  ? 'btn-primary'
+                  : 'btn-ghost opacity-50 cursor-not-allowed'
               }`}
             >
               {isCreating ? (
                 <>
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="w-4 h-4 border-2 border-transparent border-t-white rounded-full"
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    className="w-4 h-4 border-2 border-transparent border-t-[#0B1220] rounded-full mr-2"
                   />
                   Creating profile...
                 </>
               ) : (
                 <>
                   Start Planning
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </>
               )}
-            </motion.button>
+            </button>
           </div>
 
           {/* Footer note */}
-          <div className="pt-4 border-t border-white/10 text-center">
-            <p className="text-xs text-gray-400">Your data stays private and secure</p>
+          <div className="pt-4 border-t border-[var(--ivy-border)] text-center">
+            <p className="text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-[var(--ivy-text-muted)]">Your data stays private and secure</p>
           </div>
-        </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 text-gray-400"
-      >
-        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-gray-400 rounded-full"></div>
         </div>
       </motion.div>
     </div>

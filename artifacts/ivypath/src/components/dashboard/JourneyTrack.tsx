@@ -14,18 +14,18 @@ const CollegeTower = ({ collegeId }: { collegeId: string }) => {
   const theme = UNIVERSITY_THEMES[collegeId] || UNIVERSITY_THEMES.default;
 
   return (
-    <svg viewBox="0 0 100 200" className="w-16 h-32 drop-shadow-lg">
-      <rect x="30" y="160" width="40" height="40" fill="#D1BFA7" />
-      <rect x="35" y="60" width="30" height="100" fill="#E8D5B7" />
+    <svg viewBox="0 0 100 200" className="w-16 h-32 drop-shadow-lg opacity-90">
+      <rect x="30" y="160" width="40" height="40" fill="#4A6285" />
+      <rect x="35" y="60" width="30" height="100" fill="#8BA3C7" />
       <rect x="40" y="70" width="8" height="12" fill={theme.primaryColor} />
       <rect x="52" y="70" width="8" height="12" fill={theme.primaryColor} />
       <rect x="40" y="90" width="8" height="12" fill={theme.primaryColor} />
       <rect x="52" y="90" width="8" height="12" fill={theme.primaryColor} />
       <rect x="40" y="110" width="8" height="12" fill={theme.primaryColor} />
       <rect x="52" y="110" width="8" height="12" fill={theme.primaryColor} />
-      <rect x="38" y="40" width="24" height="20" fill="#E8D5B7" />
+      <rect x="38" y="40" width="24" height="20" fill="#8BA3C7" />
       <polygon points="50,10 65,40 35,40" fill={theme.primaryColor} />
-      <line x1="50" y1="0" x2="50" y2="15" stroke="#333" strokeWidth="1" />
+      <line x1="50" y1="0" x2="50" y2="15" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
       <rect x="50" y="0" width="20" height="12" fill={theme.primaryColor} />
       <text x="54" y="9" fill="white" fontSize="6" fontWeight="bold">IVY</text>
     </svg>
@@ -44,45 +44,45 @@ const MiniAvatar = ({ position }: { position: number }) => {
     >
       <div className="relative">
         <motion.div
-          className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white px-2 py-1 rounded-lg shadow-md text-xs whitespace-nowrap"
+          className="absolute -top-8 left-1/2 -translate-x-1/2 glass-panel px-3 py-1 text-[10px] uppercase font-bold tracking-wider text-[var(--ivy-accent)] shadow-md whitespace-nowrap"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
           Let's go!
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-white"></div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-[var(--ivy-glass-bg)] border-b border-r border-[var(--ivy-glass-border)]"></div>
         </motion.div>
-        <svg viewBox="0 0 60 100" className="w-12 h-20">
-          <ellipse cx="30" cy="18" rx="12" ry="14" fill="#C4956A" />
-          <path d="M 18 14 Q 18 4 30 4 Q 42 4 42 14 Q 42 10 30 8 Q 18 10 18 14" fill="#1a1a1a" />
-          <ellipse cx="30" cy="8" rx="9" ry="5" fill="#1a1a1a" />
-          <path d="M 22 14 L 26 13" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 34 13 L 38 14" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" />
+        <svg viewBox="0 0 60 100" className="w-12 h-20 drop-shadow-md">
+          <ellipse cx="30" cy="18" rx="12" ry="14" fill="#E2C6A9" />
+          <path d="M 18 14 Q 18 4 30 4 Q 42 4 42 14 Q 42 10 30 8 Q 18 10 18 14" fill="#0B1220" />
+          <ellipse cx="30" cy="8" rx="9" ry="5" fill="#0B1220" />
+          <path d="M 22 14 L 26 13" stroke="#0B1220" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 34 13 L 38 14" stroke="#0B1220" strokeWidth="1.5" strokeLinecap="round" />
           <ellipse cx="24" cy="17" rx="2.5" ry="2" fill="white" />
           <ellipse cx="36" cy="17" rx="2.5" ry="2" fill="white" />
-          <circle cx="24.5" cy="17.5" r="1.2" fill="#4a3728" />
-          <circle cx="36.5" cy="17.5" r="1.2" fill="#4a3728" />
-          <path d="M 30 19 L 29 23 L 31 23" stroke="#a67c52" strokeWidth="1" fill="none" />
-          <path d="M 26 26 Q 30 29 34 26" stroke="#8B5A2B" strokeWidth="1.2" fill="none" />
-          <ellipse cx="17" cy="18" rx="2" ry="3" fill="#C4956A" />
-          <ellipse cx="43" cy="18" rx="2" ry="3" fill="#C4956A" />
-          <rect x="26" y="30" width="8" height="6" fill="#C4956A" />
-          <path d="M 14 36 L 14 70 L 46 70 L 46 36 Q 46 33 40 33 L 20 33 Q 14 33 14 36" fill="#E8E8E8" />
-          <path d="M 20 33 Q 22 38 30 38 Q 38 38 40 33" fill="#D0D0D0" />
-          <rect x="20" y="52" width="20" height="12" rx="2" fill="#D0D0D0" />
-          <line x1="30" y1="38" x2="30" y2="52" stroke="#D0D0D0" strokeWidth="1" />
-          <line x1="26" y1="38" x2="26" y2="48" stroke="#CCCCCC" strokeWidth="1.5" />
-          <line x1="34" y1="38" x2="34" y2="48" stroke="#CCCCCC" strokeWidth="1.5" />
-          <path d="M 14 36 L 6 50 L 6 54 L 10 54 L 14 45" fill="#E8E8E8" />
-          <path d="M 46 36 L 54 50 L 54 54 L 50 54 L 46 45" fill="#E8E8E8" />
-          <ellipse cx="8" cy="56" rx="4" ry="3" fill="#C4956A" />
-          <ellipse cx="52" cy="56" rx="4" ry="3" fill="#C4956A" />
-          <rect x="18" y="70" width="10" height="22" fill="#2C3E50" />
-          <rect x="32" y="70" width="10" height="22" fill="#2C3E50" />
-          <ellipse cx="23" cy="94" rx="7" ry="4" fill="#FFFFFF" />
-          <ellipse cx="37" cy="94" rx="7" ry="4" fill="#FFFFFF" />
-          <rect x="17" y="91" width="12" height="3" rx="1" fill="#FFFFFF" />
-          <rect x="32" y="91" width="12" height="3" rx="1" fill="#FFFFFF" />
+          <circle cx="24.5" cy="17.5" r="1.2" fill="#0B1220" />
+          <circle cx="36.5" cy="17.5" r="1.2" fill="#0B1220" />
+          <path d="M 30 19 L 29 23 L 31 23" stroke="#0B1220" strokeWidth="1" fill="none" />
+          <path d="M 26 26 Q 30 29 34 26" stroke="#0B1220" strokeWidth="1.2" fill="none" />
+          <ellipse cx="17" cy="18" rx="2" ry="3" fill="#E2C6A9" />
+          <ellipse cx="43" cy="18" rx="2" ry="3" fill="#E2C6A9" />
+          <rect x="26" y="30" width="8" height="6" fill="#E2C6A9" />
+          <path d="M 14 36 L 14 70 L 46 70 L 46 36 Q 46 33 40 33 L 20 33 Q 14 33 14 36" fill="#38BDF8" />
+          <path d="M 20 33 Q 22 38 30 38 Q 38 38 40 33" fill="#0F1A2E" />
+          <rect x="20" y="52" width="20" height="12" rx="2" fill="#0F1A2E" />
+          <line x1="30" y1="38" x2="30" y2="52" stroke="#152238" strokeWidth="1" />
+          <line x1="26" y1="38" x2="26" y2="48" stroke="#152238" strokeWidth="1.5" />
+          <line x1="34" y1="38" x2="34" y2="48" stroke="#152238" strokeWidth="1.5" />
+          <path d="M 14 36 L 6 50 L 6 54 L 10 54 L 14 45" fill="#38BDF8" />
+          <path d="M 46 36 L 54 50 L 54 54 L 50 54 L 46 45" fill="#38BDF8" />
+          <ellipse cx="8" cy="56" rx="4" ry="3" fill="#E2C6A9" />
+          <ellipse cx="52" cy="56" rx="4" ry="3" fill="#E2C6A9" />
+          <rect x="18" y="70" width="10" height="22" fill="#152238" />
+          <rect x="32" y="70" width="10" height="22" fill="#152238" />
+          <ellipse cx="23" cy="94" rx="7" ry="4" fill="#F0F4FF" />
+          <ellipse cx="37" cy="94" rx="7" ry="4" fill="#F0F4FF" />
+          <rect x="17" y="91" width="12" height="3" rx="1" fill="#F0F4FF" />
+          <rect x="32" y="91" width="12" height="3" rx="1" fill="#F0F4FF" />
         </svg>
       </div>
     </motion.div>
@@ -139,19 +139,19 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-slate-50 to-indigo-50 rounded-2xl p-8 overflow-hidden shadow-inner">
-      <div className="flex justify-between mb-4 px-4 text-sm font-medium text-stone-600">
-        <span className="bg-white/80 px-3 py-1 rounded-full">Grade 10</span>
-        <span className="bg-white/80 px-3 py-1 rounded-full">Grade 11</span>
-        <span className="bg-white/80 px-3 py-1 rounded-full">Grade 12</span>
+    <div className="relative glass-card p-8 overflow-hidden">
+      <div className="flex justify-between mb-4 px-4">
+        <span className="glass-panel px-3 py-1 rounded-[24px] text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] border border-[var(--ivy-border)]">Grade 10</span>
+        <span className="glass-panel px-3 py-1 rounded-[24px] text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] border border-[var(--ivy-border)]">Grade 11</span>
+        <span className="glass-panel px-3 py-1 rounded-[24px] text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] border border-[var(--ivy-border)]">Grade 12</span>
       </div>
 
       <div className="relative h-32 mt-8">
         <svg className="absolute top-1/2 left-4 right-20 h-3 transform -translate-y-1/2" style={{ width: 'calc(100% - 6rem)' }}>
-          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#e5e7eb" strokeWidth="6" strokeLinecap="round" />
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="rgba(255,255,255,0.08)" strokeWidth="6" strokeLinecap="round" />
           <motion.line
             x1="0" y1="50%" x2={`${progress}%`} y2="50%"
-            stroke="var(--color-primary)"
+            stroke="var(--ivy-accent)"
             strokeWidth="6"
             strokeLinecap="round"
             initial={{ pathLength: 0 }}
@@ -185,27 +185,27 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
                           animate={{ y: [0, -3, 0] }}
                           transition={{ duration: 1.5, repeat: Infinity }}
                         >
-                          <Star className="w-5 h-5 text-yellow-500 fill-yellow-400" />
+                          <Star className="w-5 h-5 text-[var(--ivy-accent)] fill-[var(--ivy-accent)] drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
                         </motion.div>
                       </div>
                     ) : (
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all ${
                         status === 'completed'
-                          ? 'bg-green-500 text-white'
+                          ? 'bg-[var(--ivy-success)] text-[#0B1220]'
                           : status === 'in_progress'
-                          ? 'bg-primary text-white'
-                          : 'bg-white border-2 border-stone-300'
+                          ? 'bg-[var(--ivy-accent-glow)] border border-[var(--ivy-accent)] text-[var(--ivy-accent)] shadow-[0_0_12px_rgba(56,189,248,0.3)]'
+                          : 'bg-[var(--ivy-bg-elevated)] border border-[var(--ivy-border)] text-[var(--ivy-text-muted)]'
                       }`}>
                         {status === 'completed' ? <CheckCircle2 className="w-5 h-5" /> :
-                         status === 'in_progress' ? <div className="w-3 h-3 bg-white rounded-full animate-pulse" /> :
-                         <Circle className="w-4 h-4 text-stone-400" />}
+                         status === 'in_progress' ? <div className="w-3 h-3 bg-[var(--ivy-accent)] rounded-full animate-pulse" /> :
+                         <Circle className="w-4 h-4 text-[var(--ivy-text-muted)]" />}
                       </div>
                     )}
                   </motion.div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p className="font-medium">{milestone.label}</p>
-                  <p className="text-xs opacity-70">{milestone.grade.replace('_', ' ')}</p>
+                  <p className="font-medium text-[var(--ivy-text-primary)]">{milestone.label}</p>
+                  <p className="text-xs opacity-70 text-[var(--ivy-text-secondary)]">{milestone.grade.replace('_', ' ')}</p>
                 </TooltipContent>
               </Tooltip>
             );

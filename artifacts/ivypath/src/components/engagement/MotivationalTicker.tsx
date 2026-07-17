@@ -20,8 +20,8 @@ export const MotivationalTicker: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-10 bg-primary text-white overflow-hidden flex items-center justify-center z-50 shadow-inner">
-      <div className="animate-pulse text-sm font-medium px-4 text-center transition-opacity duration-1000">
+    <div className="fixed bottom-0 left-0 right-0 h-10 bg-[var(--ivy-bg-panel)] border-t border-[var(--ivy-border)] overflow-hidden flex items-center justify-center z-50">
+      <div className="text-[0.75rem] font-medium tracking-[0.05em] uppercase text-[var(--ivy-text-secondary)] px-4 text-center transition-opacity duration-1000">
         {QUOTES[index]}
       </div>
     </div>

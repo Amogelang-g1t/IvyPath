@@ -39,14 +39,14 @@ export default function OnboardingPage() {
       {currentStep === 1 && <IntakeForm />}
       {currentStep === 2 && <CollegeSelect />}
       {currentStep >= 3 && (
-        <div className="text-center p-10 space-y-8">
-          <h1 className="text-4xl font-bold mb-4">Generating Your Pathway...</h1>
-          <p className="text-gray-500">Our engine is analyzing your profile against Ivy League benchmarks.</p>
-          <div className="mt-8 w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+        <div className="glass-card text-center p-10 space-y-8 max-w-lg mx-auto">
+          <h1 className="text-3xl font-black mb-4">Generating Your Pathway...</h1>
+          <p className="text-[var(--ivy-text-secondary)]">Our engine is analyzing your profile against Ivy League benchmarks.</p>
+          <div className="mt-8 w-16 h-16 border-4 border-[var(--ivy-accent)] border-t-transparent rounded-full animate-spin mx-auto" />
           <div className="mt-8">
             <button
               onClick={handleFinishOnboarding}
-              className="neu-button px-10 py-4 text-primary font-bold hover:scale-105 transition-all"
+              className="btn-primary px-10 py-4 w-full"
             >
               Enter Command Center
             </button>

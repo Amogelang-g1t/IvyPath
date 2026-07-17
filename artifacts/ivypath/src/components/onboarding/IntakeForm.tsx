@@ -30,172 +30,172 @@ export const IntakeForm: React.FC = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-10 py-10 px-4">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-black text-stone-800">Academic Profile</h2>
-        <p className="text-stone-500 font-medium">Help us understand your environment to build your path.</p>
-      </div >
+        <h2 className="text-3xl font-black text-[var(--ivy-text-primary)]">Academic Profile</h2>
+        <p className="text-[var(--ivy-text-secondary)] font-medium mt-2">Help us understand your environment to build your path.</p>
+      </div>
 
       <div className="grid grid-cols-1 gap-8">
-        {/* School Information */}
+        {/* School Type */}
         <div className="space-y-4">
-          <label className="text-sm font-bold text-stone-700 ml-1">School Type</label>
+          <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">School Type</label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {SCHOOL_TYPES.map(type => (
               <button
                 key={type.value}
                 onClick={() => handleChange('schoolType', type.value)}
-                className={`p-4 text-left transition-all ${
+                className={`p-4 text-left rounded-xl border transition-all ${
                   userProfile.schoolType === type.value
-                    ? 'neu-pressed text-primary font-bold'
-                    : 'neu-flat text-stone-600 hover:scale-[1.02]'
+                    ? 'border-[var(--ivy-accent)] bg-[var(--ivy-accent)]/10 text-[var(--ivy-accent)]'
+                    : 'glass-panel text-[var(--ivy-text-secondary)] hover:border-[var(--ivy-accent)]/40'
                 }`}
               >
                 <p className="font-bold text-sm">{type.label}</p>
-                <p className="text-xs opacity-70">{type.desc}</p>
+                <p className="text-xs opacity-70 mt-0.5">{type.desc}</p>
               </button>
             ))}
-          </div >
-        </div >
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-bold text-stone-700 ml-1">School Name</label>
+            <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">School Name</label>
             <input
               type="text"
               value={userProfile.schoolName}
               onChange={(e) => handleChange('schoolName', e.target.value)}
               placeholder="e.g. Pretoria Boys High"
-              className="w-full p-4 rounded-2xl border-0 neu-pressed focus:ring-2 focus:ring-primary outline-none transition-all"
+              className="input-field text-sm"
             />
-          </div >
+          </div>
           <div className="space-y-2">
-            <label className="text-sm font-bold text-stone-700 ml-1">Province</label>
+            <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Province</label>
             <select
               value={userProfile.province}
               onChange={(e) => handleChange('province', e.target.value)}
-              className="w-full p-4 rounded-2xl border-0 neu-pressed focus:ring-2 focus:ring-primary outline-none transition-all appearance-none"
+              className="input-field text-sm appearance-none"
             >
               <option value="">Select Province</option>
               {PROVINCES.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
             </select>
-          </div >
-        </div >
+          </div>
+        </div>
 
-        {/* GPA Field */}
+        {/* GPA */}
         <div className="space-y-2">
-          <label className="text-sm font-bold text-stone-700 ml-1">Current Average (%)</label>
+          <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Current Average (%)</label>
           <input
             type="text"
             value={userProfile.gpa}
             onChange={(e) => handleChange('gpa', e.target.value)}
             placeholder="e.g. 85"
-            className="w-full p-4 rounded-2xl border-0 neu-pressed focus:ring-2 focus:ring-primary outline-none transition-all"
+            className="input-field text-sm"
           />
-        </div >
+        </div>
 
-        {/* Standardized Test Logic */}
-        <div className="p-6 rounded-3xl neu-flat space-y-4">
-          <label className="text-sm font-bold text-stone-700 block">
+        {/* Standardized Test */}
+        <div className="glass-panel p-6 space-y-4">
+          <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">
             Have you taken the SAT or ACT?
           </label>
           <div className="flex gap-4">
             <button
               onClick={() => handleChange('hasTakenStandardizedTest', true)}
-              className={`flex-1 py-3 rounded-xl font-bold transition-all ${
+              className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all border ${
                 userProfile.hasTakenStandardizedTest
-                ? 'neu-pressed text-primary'
-                : 'neu-button text-stone-600'
+                  ? 'border-[var(--ivy-accent)] bg-[var(--ivy-accent)]/10 text-[var(--ivy-accent)]'
+                  : 'border-[var(--ivy-border)] text-[var(--ivy-text-secondary)] hover:border-[var(--ivy-accent)]/40'
               }`}
             >
               Yes
             </button>
             <button
               onClick={() => handleChange('hasTakenStandardizedTest', false)}
-              className={`flex-1 py-3 rounded-xl font-bold transition-all ${
+              className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all border ${
                 !userProfile.hasTakenStandardizedTest
-                ? 'neu-pressed text-primary'
-                : 'neu-button text-stone-600'
+                  ? 'border-[var(--ivy-accent)] bg-[var(--ivy-accent)]/10 text-[var(--ivy-accent)]'
+                  : 'border-[var(--ivy-border)] text-[var(--ivy-text-secondary)] hover:border-[var(--ivy-accent)]/40'
               }`}
             >
               No
-            </button >
-          </div >
+            </button>
+          </div>
 
           {userProfile.hasTakenStandardizedTest ? (
-            <div className="mt-4 space-y-2">
-              <label className="text-xs text-stone-400 uppercase font-black tracking-widest">Your Score</label>
+            <div className="space-y-2">
+              <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Your Score</label>
               <input
                 type="text"
                 value={userProfile.satActScore}
                 onChange={(e) => handleChange('satActScore', e.target.value)}
                 placeholder="e.g. 1550 SAT"
-                className="w-full p-4 rounded-2xl border-0 neu-pressed outline-none"
+                className="input-field text-sm"
               />
-            </div >
+            </div>
           ) : (
-            <div className="mt-4 p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 space-y-3">
-              <p className="text-sm text-indigo-700 dark:text-indigo-300 font-medium">
-                Standardized tests are key for many Ivy League target profiles. We recommend scheduling a test date to benchmark your progress.
+            <div className="p-4 rounded-xl border border-[var(--ivy-accent)]/20 bg-[var(--ivy-accent)]/5 space-y-3">
+              <p className="text-sm text-[var(--ivy-accent)] font-medium">
+                Standardized tests are key for many Ivy League target profiles. We recommend scheduling a test date.
               </p>
               <div className="space-y-2">
-                <label className="text-xs text-indigo-600 uppercase font-black tracking-widest">Set Your Goal Date</label>
+                <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Set Your Goal Date</label>
                 <input
                   type="date"
                   value={userProfile.satActGoalDate}
                   onChange={(e) => handleChange('satActGoalDate', e.target.value)}
-                  className="w-full p-3 rounded-xl border-0 neu-pressed outline-none text-sm"
+                  className="input-field text-sm"
                 />
-              </div >
-            </div >
+              </div>
+            </div>
           )}
-        </div >
+        </div>
 
         {/* Major & ECs */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-bold text-stone-700 ml-1">Intended Major</label>
+            <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Intended Major</label>
             <input
               type="text"
               value={userProfile.major}
               onChange={(e) => handleChange('major', e.target.value)}
               placeholder="e.g. Computer Science"
-              className="w-full p-4 rounded-2xl border-0 neu-pressed outline-none transition-all"
+              className="input-field text-sm"
             />
-          </div >
+          </div>
           <div className="space-y-2">
-            <label className="text-sm font-bold text-stone-700 ml-1">Financial Aid Needs</label>
+            <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Financial Aid Needs</label>
             <select
               value={userProfile.efcTier}
               onChange={(e) => handleChange('efcTier', e.target.value)}
-              className="w-full p-4 rounded-2xl border-0 neu-pressed outline-none transition-all appearance-none"
+              className="input-field text-sm appearance-none"
             >
               <option value="">Select Tier</option>
               <option value="low">Low (Full Need)</option>
               <option value="medium">Medium</option>
               <option value="high">High (Self-Funded)</option>
             </select>
-          </div >
-        </div >
+          </div>
+        </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-bold text-stone-700 ml-1">Notable Extracurriculars</label>
+          <label className="text-xs font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] block">Notable Extracurriculars</label>
           <textarea
             value={userProfile.extracurriculars}
             onChange={(e) => handleChange('extracurriculars', e.target.value)}
             placeholder="Describe your key achievements..."
             rows={3}
-            className="w-full p-4 rounded-2xl border-0 neu-pressed outline-none transition-all"
+            className="input-field text-sm"
           />
-        </div >
-      </div >
+        </div>
+      </div>
 
       <div className="flex justify-end mt-10">
         <button
           onClick={() => setStep(2)}
-          className="neu-button px-10 py-4 text-primary font-black hover:scale-105 transition-all"
+          className="btn-primary px-10 py-4"
         >
-          Next: Target Colleges →
+          Next: Target Colleges
         </button>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
