@@ -1,0 +1,48 @@
+Redesign the UI/UX of this web app. Keep all existing functionality and logic
+intact — this is a visual and interaction redesign only, not a feature change.
+
+DESIGN DIRECTION
+- Color: deep blue background (near #0B1220 or #0D1B2A), not a flat single
+  tone — use 2-3 tonal variations of blue for depth (e.g. a slightly lighter
+  panel blue, a deep near-black blue for the base). Add one accent color that
+  isn't blue (a muted cyan, violet, or warm amber) used sparingly for CTAs,
+  active states, and key highlights only.
+- Style: glassmorphism for cards, modals, and nav — semi-transparent panels
+  (background-color with ~10-20% opacity), backdrop-filter: blur(12-20px),
+  a thin 1px border in a lighter translucent white/blue (rgba(255,255,255,0.1)),
+  and soft shadows for elevation. Don't apply glass to every single element —
+  reserve it for surfaces that sit "above" the background (cards, dropdowns,
+  modals), not for base page sections.
+- Typography: pick one modern sans-serif for UI text (e.g. Inter, Manrope, or
+  system-ui) with a clear type scale — distinct sizes/weights for headings,
+  body, captions, and labels. No default browser font stacking.
+- Spacing: use a consistent spacing scale (4/8/12/16/24/32/48px) throughout.
+  Every section, card, and component should have breathing room — no elements
+  touching edges or crowding each other. Increase padding inside cards/buttons
+  beyond what feels "safe" — generous spacing is what makes it read as modern.
+- Icons: use a clean icon set (Lucide, Phosphor, or Heroicons) if icons are
+  needed. NO emojis anywhere in the UI — not in buttons, headers, empty
+  states, or notifications. This includes no sparkle/star/robot emojis or
+  other "AI product" visual clichés.
+- Interactive states: every clickable element needs a visible hover, active,
+  and focus state (subtle scale, glow, or brightness shift — nothing jarring).
+  Keyboard focus outlines must remain visible for accessibility.
+- Motion: light, purposeful transitions only (150-250ms ease) on hover states
+  and panel open/close. No bouncy or excessive animation.
+
+USABILITY REQUIREMENTS
+- Maintain a clear visual hierarchy: primary actions should look obviously
+  more prominent than secondary ones (contrast, size, or fill vs outline).
+- Ensure text has sufficient contrast against the blue background (WCAG AA
+  minimum) — don't sacrifice readability for aesthetics.
+- Layout must be responsive and usable on mobile, tablet, and desktop.
+- Keep navigation and core actions where users expect them; don't rearrange
+  flows users already know, only restyle them.
+- Empty states, errors, and loading states should be styled consistently
+  with the rest of the app, not left as unstyled defaults.
+
+PROCESS
+1. First scan the existing components/pages and list what you'll restyle.
+2. Propose a small design token set (exact hex values, spacing scale, font
+   choices) before writing code, so it's consistent across every component.
+3. Apply it component by component, keeping the app functional at each step.

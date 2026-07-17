@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "IvyPath"
+version = "1.0.0"
+id = "artifacts/ivypath"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23150
+
+[services.development]
+run = "pnpm --filter @workspace/ivypath run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ivypath", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ivypath/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23150"
+BASE_PATH = "/"
