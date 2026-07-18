@@ -14,6 +14,7 @@ interface UserProfile {
   schoolType?: string;
   schoolName?: string;
   province?: string;
+  gender?: 'male' | 'female' | 'neutral' | '';
 }
 
 interface AppState {
@@ -40,6 +41,7 @@ export const useAppStore = create<AppState>((set) => ({
     schoolType: '',
     schoolName: '',
     province: '',
+    gender: '',
   },
   dreamCollege: 'default',
   onboardingComplete: false,

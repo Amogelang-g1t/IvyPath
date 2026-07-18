@@ -32,8 +32,11 @@ const CollegeTower = ({ collegeId }: { collegeId: string }) => {
   );
 };
 
-const MiniAvatar = ({ position }: { position: number }) => {
+const MiniAvatar = ({ position, gender }: { position: number; gender?: string }) => {
   const leftPosition = `${position}%`;
+  const isFemale = gender === 'female';
+  const shirtColor = isFemale ? '#F472B6' : '#38BDF8';
+  const hairColor = '#0B1220';
 
   return (
     <motion.div
@@ -54,10 +57,18 @@ const MiniAvatar = ({ position }: { position: number }) => {
         </motion.div>
         <svg viewBox="0 0 60 100" className="w-12 h-20 drop-shadow-md">
           <ellipse cx="30" cy="18" rx="12" ry="14" fill="#E2C6A9" />
-          <path d="M 18 14 Q 18 4 30 4 Q 42 4 42 14 Q 42 10 30 8 Q 18 10 18 14" fill="#0B1220" />
-          <ellipse cx="30" cy="8" rx="9" ry="5" fill="#0B1220" />
-          <path d="M 22 14 L 26 13" stroke="#0B1220" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 34 13 L 38 14" stroke="#0B1220" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 18 14 Q 18 4 30 4 Q 42 4 42 14 Q 42 10 30 8 Q 18 10 18 14" fill={hairColor} />
+          <ellipse cx="30" cy="8" rx="9" ry="5" fill={hairColor} />
+          {isFemale && (
+            <>
+              <path d="M 16 16 Q 12 30 14 42" stroke={hairColor} strokeWidth="3.5" fill="none" strokeLinecap="round" />
+              <path d="M 44 16 Q 48 30 46 42" stroke={hairColor} strokeWidth="3.5" fill="none" strokeLinecap="round" />
+              <circle cx="46" cy="12" r="2.5" fill={shirtColor} />
+              <path d="M 44 10 Q 50 8 48 14" stroke={shirtColor} strokeWidth="2" fill="none" strokeLinecap="round" />
+            </>
+          )}
+          <path d="M 22 14 L 26 13" stroke={hairColor} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 34 13 L 38 14" stroke={hairColor} strokeWidth="1.5" strokeLinecap="round" />
           <ellipse cx="24" cy="17" rx="2.5" ry="2" fill="white" />
           <ellipse cx="36" cy="17" rx="2.5" ry="2" fill="white" />
           <circle cx="24.5" cy="17.5" r="1.2" fill="#0B1220" />
@@ -67,14 +78,14 @@ const MiniAvatar = ({ position }: { position: number }) => {
           <ellipse cx="17" cy="18" rx="2" ry="3" fill="#E2C6A9" />
           <ellipse cx="43" cy="18" rx="2" ry="3" fill="#E2C6A9" />
           <rect x="26" y="30" width="8" height="6" fill="#E2C6A9" />
-          <path d="M 14 36 L 14 70 L 46 70 L 46 36 Q 46 33 40 33 L 20 33 Q 14 33 14 36" fill="#38BDF8" />
+          <path d="M 14 36 L 14 70 L 46 70 L 46 36 Q 46 33 40 33 L 20 33 Q 14 33 14 36" fill={shirtColor} />
           <path d="M 20 33 Q 22 38 30 38 Q 38 38 40 33" fill="#0F1A2E" />
           <rect x="20" y="52" width="20" height="12" rx="2" fill="#0F1A2E" />
           <line x1="30" y1="38" x2="30" y2="52" stroke="#152238" strokeWidth="1" />
           <line x1="26" y1="38" x2="26" y2="48" stroke="#152238" strokeWidth="1.5" />
           <line x1="34" y1="38" x2="34" y2="48" stroke="#152238" strokeWidth="1.5" />
-          <path d="M 14 36 L 6 50 L 6 54 L 10 54 L 14 45" fill="#38BDF8" />
-          <path d="M 46 36 L 54 50 L 54 54 L 50 54 L 46 45" fill="#38BDF8" />
+          <path d="M 14 36 L 6 50 L 6 54 L 10 54 L 14 45" fill={shirtColor} />
+          <path d="M 46 36 L 54 50 L 54 54 L 50 54 L 46 45" fill={shirtColor} />
           <ellipse cx="8" cy="56" rx="4" ry="3" fill="#E2C6A9" />
           <ellipse cx="52" cy="56" rx="4" ry="3" fill="#E2C6A9" />
           <rect x="18" y="70" width="10" height="22" fill="#152238" />
@@ -97,7 +108,7 @@ type Milestone = {
   term: string;
 };
 
-export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
+export default function JourneyTrack({ tasks = [], gender }: { tasks?: any[]; gender?: string }) {
   const { dreamCollege } = useAppStore();
   const [progress, setProgress] = useState(0);
 
@@ -146,7 +157,7 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
         <span className="glass-panel px-3 py-1 rounded-[24px] text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em] border border-[var(--ivy-border)]">Grade 12</span>
       </div>
 
-      <div className="relative h-32 mt-8">
+      <div className="relative h-48 mt-10">
         <svg className="absolute top-1/2 left-4 right-20 h-3 transform -translate-y-1/2" style={{ width: 'calc(100% - 6rem)' }}>
           <line x1="0" y1="50%" x2="100%" y2="50%" stroke="rgba(255,255,255,0.08)" strokeWidth="6" strokeLinecap="round" />
           <motion.line
@@ -160,7 +171,7 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
           />
         </svg>
 
-        <MiniAvatar position={progress} />
+        <MiniAvatar position={progress} gender={gender} />
 
         <TooltipProvider>
           {milestones.map((milestone, index) => {
@@ -178,7 +189,7 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
                     transition={{ delay: index * 0.1 }}
                   >
                     {isGoal ? (
-                      <div className="relative">
+                      <div className="relative flex flex-col items-center">
                         <CollegeTower collegeId={dreamCollege} />
                         <motion.div
                           className="absolute -top-2 left-1/2 -translate-x-1/2"
@@ -187,18 +198,22 @@ export default function JourneyTrack({ tasks = [] }: { tasks?: any[] }) {
                         >
                           <Star className="w-5 h-5 text-[var(--ivy-accent)] fill-[var(--ivy-accent)] drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
                         </motion.div>
+                        <span className="absolute -bottom-6 text-[0.65rem] font-bold text-[var(--ivy-accent)] uppercase tracking-wider whitespace-nowrap">GOAL</span>
                       </div>
                     ) : (
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all ${
-                        status === 'completed'
-                          ? 'bg-[var(--ivy-success)] text-[#0B1220]'
-                          : status === 'in_progress'
-                          ? 'bg-[var(--ivy-accent-glow)] border border-[var(--ivy-accent)] text-[var(--ivy-accent)] shadow-[0_0_12px_rgba(56,189,248,0.3)]'
-                          : 'bg-[var(--ivy-bg-elevated)] border border-[var(--ivy-border)] text-[var(--ivy-text-muted)]'
-                      }`}>
-                        {status === 'completed' ? <CheckCircle2 className="w-5 h-5" /> :
-                         status === 'in_progress' ? <div className="w-3 h-3 bg-[var(--ivy-accent)] rounded-full animate-pulse" /> :
-                         <Circle className="w-4 h-4 text-[var(--ivy-text-muted)]" />}
+                      <div className="flex flex-col items-center gap-1">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all ${
+                          status === 'completed'
+                            ? 'bg-[var(--ivy-success)] text-[#0B1220]'
+                            : status === 'in_progress'
+                            ? 'bg-[var(--ivy-accent-glow)] border border-[var(--ivy-accent)] text-[var(--ivy-accent)] shadow-[0_0_12px_rgba(56,189,248,0.3)]'
+                            : 'bg-[var(--ivy-bg-elevated)] border border-[var(--ivy-border)] text-[var(--ivy-text-muted)]'
+                        }`}>
+                          {status === 'completed' ? <CheckCircle2 className="w-5 h-5" /> :
+                           status === 'in_progress' ? <div className="w-3 h-3 bg-[var(--ivy-accent)] rounded-full animate-pulse" /> :
+                           <Circle className="w-4 h-4 text-[var(--ivy-text-muted)]" />}
+                        </div>
+                        <span className="text-[0.65rem] font-semibold text-[var(--ivy-text-secondary)] uppercase tracking-wider whitespace-nowrap mt-1">{milestone.label}</span>
                       </div>
                     )}
                   </motion.div>

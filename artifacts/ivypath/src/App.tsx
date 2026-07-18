@@ -14,6 +14,7 @@ import ActivitiesPage from '@/app/activities/page';
 import ScholarshipsPage from '@/app/scholarships/page';
 import InterviewPrep from '@/app/interview/page';
 import MentorPage from '@/app/mentor/page';
+import StatsPage from '@/app/stats/page';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,9 @@ function Router() {
       </Route>
       <Route path="/mentor">
         <AppLayout><MentorPage /></AppLayout>
+      </Route>
+      <Route path="/stats">
+        <AppLayout><StatsPage /></AppLayout>
       </Route>
 
       <Route component={NotFound} />

@@ -26,7 +26,7 @@ export const PathwayEngine = {
 
     // --- 1. STRATEGIC OVERVIEW ---
     let overallStrategy = "Building a competitive profile through academic excellence and targeted leadership.";
-    const focusAreas = ['GPA Maintenance', 'Core Competencies'];
+    const focusAreas = ['Academic Rigor', 'Standardized Testing', 'Leadership', 'Writing & Applications', 'South African Deadlines'];
     const recommendations: string[] = [];
 
     // --- 2. THE "HIGH-IMPACT" PLAYS (The Ivy Secret Sauce) ---
@@ -55,12 +55,76 @@ export const PathwayEngine = {
         ...highImpactPlays[0],
         id: 'hi-1', gradeLevel: 'grade_10', term: 'term_4', points: 200, status: 'pending', impactLevel: 'national'
       });
+      tasks.push(
+        {
+          id: 'g10-a1',
+          title: 'Lock in Academic Rigor',
+          description: 'Plan advanced coursework and maintain strong performance in the most challenging classes available.',
+          category: 'Academic', gradeLevel: 'grade_10', term: 'term_1', points: 100, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g10-t1',
+          title: 'Start SAT/ACT Diagnostic Prep',
+          description: 'Take a diagnostic exam and build a study schedule for SAT or ACT baseline improvement.',
+          category: 'Testing', gradeLevel: 'grade_10', term: 'term_2', points: 80, status: 'pending', priority: 'medium', impactLevel: 'local'
+        },
+        {
+          id: 'g10-e1',
+          title: 'Earn a Leadership Role',
+          description: 'Move toward responsibility in one extracurricular by taking ownership of a project or committee.',
+          category: 'Extracurricular', gradeLevel: 'grade_10', term: 'term_2', points: 90, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g10-s1',
+          title: 'Research Summer Program Options',
+          description: 'Build a shortlist of summer programs and enrichment opportunities aligned with your academic interests.',
+          category: 'Strategic', gradeLevel: 'grade_10', term: 'term_3', points: 70, status: 'pending', priority: 'medium', impactLevel: 'national'
+        }
+      );
     } else if (current_grade === 'grade_11') {
       recommendations.push("This is the la-year to execute your 'Big Move'. Research and leadership must peak now.");
       tasks.push({
         ...highImpactPlays[1],
         id: 'hi-2', gradeLevel: 'grade_11', term: 'term_4', points: 300, status: 'pending', impactLevel: 'global'
       });
+      tasks.push(
+        {
+          id: 'g11-a1',
+          title: 'Sustain Maximum Academic Rigor',
+          description: 'Keep the hardest schedule possible while protecting grades and class rank competitiveness.',
+          category: 'Academic', gradeLevel: 'grade_11', term: 'term_1', points: 120, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g11-t1',
+          title: 'Complete SAT/ACT Prep Cycle',
+          description: 'Finish content review, timed practice, and error analysis before your first official test sitting.',
+          category: 'Testing', gradeLevel: 'grade_11', term: 'term_1', points: 150, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g11-e1',
+          title: 'Lead an Extracurricular Initiative',
+          description: 'Take a real leadership position and produce measurable results for a club, team, or community effort.',
+          category: 'Extracurricular', gradeLevel: 'grade_11', term: 'term_2', points: 140, status: 'pending', priority: 'high', impactLevel: 'national'
+        },
+        {
+          id: 'g11-s1',
+          title: 'Apply to Summer Programs and Research',
+          description: 'Submit applications to selective summer programs, internships, or research placements with strong fit.',
+          category: 'Strategic', gradeLevel: 'grade_11', term: 'term_2', points: 110, status: 'pending', priority: 'high', impactLevel: 'national'
+        },
+        {
+          id: 'g11-w1',
+          title: 'Draft Core Essay Stories',
+          description: 'Outline and draft personal essay themes before senior year so your application narrative is already clear.',
+          category: 'Strategic', gradeLevel: 'grade_11', term: 'term_3', points: 100, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g11-l1',
+          title: 'Identify Recommendation Recommenders',
+          description: 'Select teachers and mentors who know your academic strengths and can speak to your character.',
+          category: 'Strategic', gradeLevel: 'grade_11', term: 'term_3', points: 80, status: 'pending', priority: 'medium', impactLevel: 'local'
+        }
+      );
     }
 
     // --- 3. ACADEMIC & TEST GAP ANALYSIS ---
@@ -109,6 +173,56 @@ export const PathwayEngine = {
         id: 'g12-1', title: 'The Personal Statement Draft', description: 'Avoid the "resume list". Tell a story of intellectual growth.',
         category: 'Strategic', gradeLevel: 'grade_12', term: 'term_1', points: 200, status: 'pending', priority: 'high', impactLevel: 'local'
       });
+      tasks.push(
+        {
+          id: 'g12-a1',
+          title: 'Protect Academic Rigor Through Graduation',
+          description: 'Keep grades strong in senior-year classes and avoid any decline in academic momentum.',
+          category: 'Academic', gradeLevel: 'grade_12', term: 'term_1', points: 110, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g12-t1',
+          title: 'Finalize SAT/ACT Retake or Submit Scores',
+          description: 'Decide whether to retake the SAT/ACT or finalize score submission strategy for each application.',
+          category: 'Testing', gradeLevel: 'grade_12', term: 'term_1', points: 120, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g12-e1',
+          title: 'Document Leadership and Impact',
+          description: 'Summarize your extracurricular leadership, accomplishments, and measurable outcomes for applications.',
+          category: 'Extracurricular', gradeLevel: 'grade_12', term: 'term_1', points: 100, status: 'pending', priority: 'high', impactLevel: 'national'
+        },
+        {
+          id: 'g12-w1',
+          title: 'Complete Essay Final Drafts',
+          description: 'Revise supplemental essays and personal statement drafts into final application-ready versions.',
+          category: 'Strategic', gradeLevel: 'grade_12', term: 'term_2', points: 150, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g12-l1',
+          title: 'Request Recommendation Letters',
+          description: 'Formally request recommendation letters early and provide teachers with a clear brag sheet and deadlines.',
+          category: 'Strategic', gradeLevel: 'grade_12', term: 'term_2', points: 90, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g12-f1',
+          title: 'Complete Financial Aid Applications',
+          description: 'Prepare FAFSA, CSS Profile, and any university-specific aid forms before priority deadlines.',
+          category: 'Strategic', gradeLevel: 'grade_12', term: 'term_2', points: 130, status: 'pending', priority: 'high', impactLevel: 'local'
+        },
+        {
+          id: 'g12-i1',
+          title: 'Prepare for Admissions Interviews',
+          description: 'Practice interview answers, school-specific questions, and a concise academic and leadership pitch.',
+          category: 'Strategic', gradeLevel: 'grade_12', term: 'term_3', points: 100, status: 'pending', priority: 'medium', impactLevel: 'local'
+        },
+        {
+          id: 'g12-sa1',
+          title: 'Track UCT, Wits, and Stellenbosch Deadlines',
+          description: 'Monitor South African university deadlines, application requirements, and document submission windows carefully.',
+          category: 'Strategic', gradeLevel: 'grade_12', term: 'term_1', points: 100, status: 'pending', priority: 'high', impactLevel: 'national'
+        }
+      );
     }
 
     return {

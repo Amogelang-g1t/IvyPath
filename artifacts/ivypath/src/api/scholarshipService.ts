@@ -1,44 +1,58 @@
-export interface Scholarship {
-  id: string;
-  name: string;
-  amount: string;
-  deadline: string;
-  criteria: string;
-  link: string;
-  category: 'merit' | 'need' | 'specialty';
-}
+import { SCHOLARSHIP_DATABASE, Scholarship } from '../data/scholarships';
+import { LocalPersistenceService } from './localPersistence';
+
+export type { Scholarship };
 
 export const ScholarshipService = {
-  // Mock external source - in a real app, this would be a GitHub Raw JSON or a free API
-  EXTERNAL_SOURCE: 'https://api.jsonbin.io/v3/b/650000000000000000000000', // Placeholder
-
-  async fetchFreshData(): Promise<Scholarship[]> {
-    try {
-      // Simulating a network request
-      await new Promise(res => setTimeout(res, 1000));
-
-      // In a real implementation, you'd use fetch(this.EXTERNAL_SOURCE)
-      // For this PoC, we return a curated list that simulates an API response
-      return [
-        { id: 's1', name: 'The Gates Scholarship', amount: '$100k', deadline: 'Sept 15', criteria: 'High academic achievement + leadership', link: 'https://gatesscholarship.org', category: 'merit' },
-        { id: 's2', name: 'QuestBridge National College Match', amount: 'Full Ride', deadline: 'Sept 26', criteria: 'High-achieving, low-income students', link: 'https://questbridge.org', category: 'need' },
-        { id: 's3', name: 'Coca-Cola Scholars Program', amount: '$20k', deadline: 'Oct 31', criteria: 'Leadership and service', link: 'https://cocalacolasholars.org', category: 'merit' },
-        { id: 's4', name: 'Jack Kent Cooke Young Scholars', amount: 'Full Tuition', deadline: 'Nov 1', criteria: 'Exceptional academic record', link: 'https://jkcf.org', category: 'merit' },
-      ];
-    } catch (e) {
-      console.error("Sync failed", e);
-      return [];
+  /** Seeds localStorage with the built-in database on first load */
+  seedIfEmpty() {
+    const existing = LocalPersistenceService.load<Scholarship[]>('scholarships');
+    if (!existing || existing.length === 0) {
+      LocalPersistenceService.save('scholarships', SCHOLARSHIP_DATABASE);
     }
   },
 
-  async syncScholarships() {
-    if (!navigator.onLine) return null;
+  /** Returns all scholarships from localStorage (seeded from built-in DB) */
+  getAll(): Scholarship[] {
+    this.seedIfEmpty();
+    return LocalPersistenceService.load<Scholarship[]>('scholarships') || SCHOLARSHIP_DATABASE;
+  },
 
-    const freshData = await this.fetchFreshData();
-    if (freshData.length > 0) {
-      localStorage.setItem('ivypath_scholarships', JSON.stringify(freshData));
-      return freshData;
+  /** Refreshes cache from built-in database (called on online sync) */
+  async syncScholarships(): Promise<Scholarship[]> {
+    LocalPersistenceService.save('scholarships', SCHOLARSHIP_DATABASE);
+    return SCHOLARSHIP_DATABASE;
+  },
+
+  filter(
+    scholarships: Scholarship[],
+    opts: { search?: string; category?: string; degree?: string }
+  ): Scholarship[] {
+    let results = scholarships;
+    if (opts.category && opts.category !== 'all') {
+      // SA Bursaries pill maps to both 'sa-bursary' and 'sa-merit'
+      if (opts.category === 'sa-bursaries') {
+        results = results.filter(s => s.category === 'sa-bursary' || s.category === 'sa-merit');
+      } else {
+        results = results.filter(s => s.category === opts.category);
+      }
     }
-    return null;
-  }
+    if (opts.degree && opts.degree !== 'all') {
+      results = results.filter(
+        s => s.targetDegree === opts.degree || s.targetDegree === 'both'
+      );
+    }
+    if (opts.search) {
+      const q = opts.search.toLowerCase();
+      results = results.filter(
+        s =>
+          s.name.toLowerCase().includes(q) ||
+          s.provider.toLowerCase().includes(q) ||
+          s.criteria.toLowerCase().includes(q) ||
+          s.country.toLowerCase().includes(q) ||
+          s.fieldFocus.some(f => f.toLowerCase().includes(q))
+      );
+    }
+    return results;
+  },
 };

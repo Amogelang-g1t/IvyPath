@@ -94,7 +94,7 @@ export default function Dashboard() {
           </h2>
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-[var(--ivy-text-muted)]">Grade {profile?.current_grade?.replace("_", " ")}</span>
         </div>
-        <JourneyTrack tasks={tasks} />
+        <JourneyTrack tasks={tasks} gender={profile?.gender} />
       </section>
 
       <div className="grid lg:grid-cols-3 gap-8">

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Bot, Trash2 } from 'lucide-react';
+import { Send, User, Bot, Trash2, Wifi, WifiOff } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { MentorEngine, MentorResponse } from '../../api/mentorEngine';
 import { LocalPersistenceService } from '../../api/localPersistence';
+import { AnalyticsService } from '../../api/analyticsService';
 
 interface Message {
   id: string;
@@ -13,10 +14,18 @@ interface Message {
   timestamp: Date;
 }
 
+function detectMode(text: string): string {
+  const t = text.toLowerCase();
+  if (t.includes('essay') || t.includes('write') || t.includes('draft')) return 'essay';
+  if (t.includes('interview') || t.includes('practice')) return 'interview';
+  return 'general';
+}
+
 export default function MentorPage() {
   const { userProfile } = useAppStore();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,7 +34,7 @@ export default function MentorPage() {
     else {
       setMessages([{
         id: '1',
-        text: "Hello. I am your Ivy League Strategic Advisor. How can I help you optimize your profile today?",
+        text: "Hello! I'm your IvyPath AI Advisor. Ask me about essays, interviews, scholarships, or how to build a standout application.",
         sender: 'mentor',
         type: 'encouragement',
         timestamp: new Date()
@@ -39,12 +48,26 @@ export default function MentorPage() {
     }
   }, [messages]);
 
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
+    const userText = input.trim();
+    const mode = detectMode(userText);
+
     const userMsg: Message = {
       id: Date.now().toString(),
-      text: input,
+      text: userText,
       sender: 'user',
       timestamp: new Date()
     };
@@ -52,22 +75,61 @@ export default function MentorPage() {
     setMessages(prev => [...prev, userMsg]);
     setInput('');
 
+    // Record analytics
+    AnalyticsService.recordChatMessage();
+
     const thinkingId = Date.now().toString() + '_think';
     setMessages(prev => [...prev, {
       id: thinkingId,
-      text: 'Analyzing profile...',
+      text: isOnline ? 'Thinking...' : 'Analyzing profile...',
       sender: 'mentor',
       timestamp: new Date()
     }]);
 
-    await new Promise(res => setTimeout(res, 1200));
+    let replyText = '';
+    let replyType: MentorResponse['type'] = 'strategic';
 
-    const response = MentorEngine.getAdvice(input, userProfile);
+    const currentOnline = navigator.onLine;
+
+    if (currentOnline) {
+      try {
+        // Build conversation history from current messages + new user message
+        const historyMessages = [...messages, userMsg]
+          .filter(m => m.sender === 'user' || m.sender === 'mentor')
+          .filter(m => !m.id.endsWith('_think'))
+          .slice(-10)
+          .map(m => ({
+            role: (m.sender === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
+            content: m.text
+          }));
+
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: historyMessages, mode })
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        replyText = data.reply || '';
+        replyType = 'strategic';
+      } catch {
+        // Fall back to offline engine if fetch fails
+        const fallback = MentorEngine.getAdvice(userText, userProfile);
+        replyText = fallback.text;
+        replyType = fallback.type;
+      }
+    } else {
+      const fallback = MentorEngine.getAdvice(userText, userProfile);
+      replyText = fallback.text;
+      replyType = fallback.type;
+    }
+
     const mentorMsg: Message = {
       id: Date.now().toString(),
-      text: response.text,
+      text: replyText,
       sender: 'mentor',
-      type: response.type,
+      type: replyType,
       timestamp: new Date()
     };
 
@@ -92,7 +154,17 @@ export default function MentorPage() {
           </div>
           <div>
             <h1 className="text-2xl font-black">AI Strategic Mentor</h1>
-            <p className="text-[0.75rem] font-semibold text-[var(--ivy-text-muted)] uppercase tracking-[0.08em]">Offline Expert System</p>
+            <div className="flex items-center gap-2">
+              {isOnline ? (
+                <span className="flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-cyan-400">
+                  <Wifi className="w-3 h-3" /> AI Mode
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-[var(--ivy-text-muted)]">
+                  <WifiOff className="w-3 h-3" /> Offline Mode
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <button onClick={clearChat} className="btn-ghost hover:!border-[var(--ivy-danger)] hover:!text-[var(--ivy-danger)] !px-3">
@@ -135,7 +207,7 @@ export default function MentorPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-          placeholder="Ask about your profile, GPA, or target college..."
+          placeholder="Ask about essays, interview prep, scholarships..."
           className="input-field !pr-16 !py-4 !rounded-[12px] bg-[var(--ivy-bg-panel)] border-[var(--ivy-border-strong)]"
         />
         <button
