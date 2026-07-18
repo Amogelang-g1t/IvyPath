@@ -1,0 +1,3 @@
+- [Vite config must tolerate missing PORT/BASE_PATH](vite-config-defaults.md) — Vercel/static builds fail if vite.config.ts throws on missing env vars; fallback to defaults instead.
+- [Subagent kind is `general`](subagent-general-kind.md) — Only `$kind: "general"` is supported for non-specialized subagents; `$kind: "implement"` is rejected.
+- [GitHub push requires Replit-connected account](github-credentials.md) — gitPush fails with `NO_CREDENTIALS` if the user has not linked GitHub in Replit; cannot be bypassed by the agent.

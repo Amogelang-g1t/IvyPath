@@ -1,0 +1,14 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "j11GALTzwfnFtIb7kD0iE"
+uri = "file://screenshots/ivypath-onboarding.jpg"
+type = "image"
+title = "IvyPath Onboarding"
+
+[[outputs]]
+id = "KcYvSEMnDEW-Isi8sEnm6"
+uri = "file://screenshots/ivypath-dashboard.jpg"
+type = "image"
+title = "IvyPath Dashboard"
