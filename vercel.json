@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm install && pnpm --filter @workspace/ivypath run build",
+  "outputDirectory": "artifacts/ivypath/dist/public",
+  "framework": "vite",
+  "headers": [
+    {
+      "source": "/service-worker.js",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    }
+  ]
+}

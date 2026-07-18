@@ -33,10 +33,10 @@ router.post('/api/chat', async (req, res) => {
     });
 
     const reply = response.content[0].type === 'text' ? response.content[0].text : '';
-    res.json({ reply });
-  } catch (err: any) {
-    console.error('Chat error:', err?.message);
-    res.status(500).json({ error: 'AI unavailable' });
+    return res.json({ reply });
+  } catch (err: unknown) {
+    console.error('Chat error:', (err as Error)?.message);
+    return res.status(500).json({ error: 'AI unavailable' });
   }
 });
 
